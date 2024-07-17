@@ -78,7 +78,7 @@
             .then(images => {
                 if (images.length > 0) {
                     const randomIndex = Math.floor(Math.random() * images.length);
-                    const randomImageUrl = `images/${images[randomIndex]}`;
+                    const randomImageUrl = `${images[randomIndex]}`;
                     // 重定向到随机选择的图片 URL
                     window.location.href = randomImageUrl;
                 } else {

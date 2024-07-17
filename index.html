@@ -67,25 +67,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Image API</title>
     <script>
-        // 动态加载 images.json 并随机选择图片
-        fetch('images.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(images => {
-                if (images.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * images.length);
-                    const randomImageUrl = `${images[randomIndex]}`;
-                    // 重定向到随机选择的图片 URL
-                    window.location.href = randomImageUrl;
-                } else {
-                    console.error('No images found in images.json');
-                }
-            })
-            .catch(error => console.error('Error loading images:', error));
+        document.addEventListener('DOMContentLoaded', function () {
+            // 动态加载 images.json 并随机选择图片
+            fetch('images.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(images => {
+                    if (images.length > 0) {
+                        const randomIndex = Math.floor(Math.random() * images.length);
+                        const randomImageUrl = images[randomIndex];
+                        // 重定向到随机选择的图片 URL
+                        window.location.href = randomImageUrl;
+                    } else {
+                        console.error('No images found in images.json');
+                    }
+                })
+                .catch(error => console.error('Error loading images:', error));
+        });
     </script>
 </head>
 <body>

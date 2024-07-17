@@ -40,28 +40,17 @@
         &copy; 2024 <a href="https://github.com/lidxs/random-image-api" target="_blank">lidxs</a>. All rights reserved.
     </footer>
     <script>
-        // 图片列表
-        const images = [
-            'images/image1.jpg',
-            'images/image2.jpg',
-            'images/image3.jpg',
-            // 添加更多图片路径
-        ];
-
-        // 随机选择图片
-        function getRandomImage() {
-            const randomIndex = Math.floor(Math.random() * images.length);
-            return images[randomIndex];
-        }
-
-        // 显示随机图片
-        function displayRandomImage() {
-            const imgElement = document.getElementById('random-image');
-            imgElement.src = getRandomImage();
-        }
-
-        // 加载页面时显示随机图片
-        window.onload = displayRandomImage;
+        // 动态加载 images.json 并随机选择图片
+        fetch('images.json')
+            .then(response => response.json())
+            .then(images => {
+                if (images.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * images.length);
+                    const imgElement = document.getElementById('random-image');
+                    imgElement.src = images[randomIndex];
+                }
+            })
+            .catch(error => console.error('Error loading images:', error));
     </script>
 </body>
 </html>

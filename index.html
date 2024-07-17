@@ -7,7 +7,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // 动态加载 images.json 并随机选择图片
-            fetch('images.json')
+            fetch('./images.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok ' + response.statusText);
@@ -18,8 +18,11 @@
                     if (images.length > 0) {
                         const randomIndex = Math.floor(Math.random() * images.length);
                         const randomImageUrl = images[randomIndex];
-                        // 重定向到随机选择的图片 URL
-                        window.location.href = randomImageUrl;
+                        // 显示随机选择的图片
+                        const imgElement = document.createElement('img');
+                        imgElement.src = randomImageUrl;
+                        imgElement.alt = 'Random Image';
+                        document.body.appendChild(imgElement);
                     } else {
                         console.error('No images found in images.json');
                     }
